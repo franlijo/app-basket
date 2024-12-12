@@ -1,1 +1,21 @@
-<p>editar-tarea works!</p>
+<h2>Editar Tarea</h2>
+@if(elementosTecnicosNoSeleccionados){
+    <app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<app-formulario-tarea 
+    [modelo]="tarea"
+    (posteoFormulario)="guardarCambios($event)"
+    [categoriasNoSeleccionadas]="categoriasNoSeleccionadas" [categoriasSeleccionadas]="categoriasSeleccionadas"
+    [elementosTecnicosNoSeleccionados]="elementosTecnicosNoSeleccionados" [elementosTecnicosSeleccionados]="elementosTecnicosSeleccionados"
+    [imagenesTareaSeleccionadas]="imagenesTareaSeleccionadas">
+
+    
+</app-formulario-tarea >
+<app-formulario-imagen [tareaId]="id">
+
+</app-formulario-imagen>
+
+} @else {
+    <app-cargando></app-cargando>
+}
+

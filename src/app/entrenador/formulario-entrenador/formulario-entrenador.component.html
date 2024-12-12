@@ -1,59 +1,99 @@
-<form (submit)="guardarCambios()">
-    <mat-form-field appearance="outline">
-        <mat-label class="campo">Nombre</mat-label>
-        <input matInput [formControl]="form.controls.nombre" />
-        <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
-    </mat-form-field>
 
-    <mat-form-field class="campo" appearance="outline">
-        <mat-label>Apellidos</mat-label>
-        <input matInput [formControl]="form.controls.apellidos" />
-        <mat-error>{{obtenerErrorCampoApellidos()}}</mat-error>
-    </mat-form-field>
+<div class="form-container">
+<form (submit)="guardarCambios()" [formGroup]="form" class="form-layout">
 
-    <mat-form-field appearance="outline">
-        <mat-label class="campo">Nombre Corto</mat-label>
-        <input matInput [formControl]="form.controls.nombreCorto" />
-        <mat-error>{{obtenerErrorCampoNombreCorto()}}</mat-error>
-    </mat-form-field>
+    <div class="primerbloque">
 
-    <mat-form-field appearance="outline">
-        <mat-label class="campo">Titulación</mat-label>
-        <input matInput [formControl]="form.controls.titulacion" />
-        <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
-    </mat-form-field>
+        <div class="left-column">
+            <app-input-img [urlImagenActual]="modelo?.foto" titulo="Foto del Entrenador"
+                (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
+        </div>
+        <div class="right-column">
 
-    <mat-form-field appearance="outline">
-        <mat-label class="campo">E-Mail</mat-label>
-        <input matInput [formControl]="form.controls.email" />
-        <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput [formControl]="form.controls.nombre" />
+                <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label class="campo">Telefono</mat-label>
-        <input matInput [formControl]="form.controls.telefono" />
-        <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput [formControl]="form.controls.apellidos" />
+                <mat-error>{{obtenerErrorCampoApellidos()}}</mat-error>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Fecha Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [formControl]="form.controls.fechaNacimiento" />
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-error>{{obtenerErrorCampoFechaNacimiento()}}</mat-error>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre Corto</mat-label>
+                <input matInput [formControl]="form.controls.nombreCorto" />
+                <mat-error>{{obtenerErrorCampoNombreCorto()}}</mat-error>
+            </mat-form-field>
 
-    <div>
-        <app-input-img 
-        [urlImagenActual]="modelo?.foto"
-        titulo="Foto del Actor" (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
+            <mat-radio-group [formControl]="form.controls.titulacion" aria-label="Select an option">
+                <mat-radio-button value="Sin titulacion">Sin titulacion</mat-radio-button>
+                <mat-radio-button value="Iniciacion">Iniciacion</mat-radio-button>
+                <mat-radio-button value="Nivel 1">Nivel 1</mat-radio-button>
+                <mat-radio-button value="Nivel 2">Nivel 2</mat-radio-button>
+                <mat-radio-button value="Superior">Superior</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field appearance="outline">
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="form.controls.fechaNacimiento" />
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-error>{{obtenerErrorCampoFechaNacimiento()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>E-Mail</mat-label>
+                <input matInput [formControl]="form.controls.email" />
+                <mat-error>{{obtenerErrorCampoEmail()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input matInput [formControl]="form.controls.telefono" />
+                <mat-error>{{obtenerErrorCampoTelefono()}}</mat-error>
+            </mat-form-field>
+
+
+        </div>
     </div>
 
 
+    <div class="bloqueinferior">
 
-<div class="contenedor-botones">
-<button mat-flat-button type="submit"
-    [disabled]="form.invalid">Guardar cambios</button>
-<a mat-stroked-button routerLink="/entrenadores">Cancelar</a>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Historial</mat-label>
+        <textarea matInput #messag1 maxlength="500"  placeholder="Escribe historial del entrenador" 
+        rows="4" cols="50" [formControl]="form.controls.historial"></textarea>
+        <mat-hint align="start">Máximo 500 caracteres</mat-hint>
+        <mat-hint align="end">{{messag1.value.length}}</mat-hint>
+        <mat-error>{{obtenerErrorCampoHistorial()}}</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Notas</mat-label>
+        <textarea matInput #messag2 maxlength="500" placeholder="Escribe notas en el club del entrenador"
+        rows="4" cols="50" [formControl]="form.controls.notas"></textarea>
+        <mat-hint align="start">Máximo 500 caracteres</mat-hint>
+        <mat-hint align="end">{{messag2.value.length}}</mat-hint>
+        <mat-error>{{obtenerErrorCampoNotas()}}</mat-error>
+    </mat-form-field>
+
 </div>
+
+
+
+
+    <div class="contenedor-botones">
+
+
+
+        <button type="submit" mat-flat-button [disabled]="form.invalid">Guardar cambios</button>
+        <a mat-stroked-button routerLink="/entrenadores">Cancelar</a>
+
+    </div>
 </form>
+</div>

@@ -1,0 +1,86 @@
+<form>
+    <mat-form-field class="titulo-seleccion">
+        <input type="text" placeholder="Seleccione los entrenadores" matInput [formControl]="control"
+            [matAutocomplete]="auto" />
+
+        <mat-autocomplete #auto (optionSelected)="entrenadorSeleccionado($event)">
+            @for (entrenador of entrenadores; track $index) {
+            <mat-option [value]="entrenador">
+                <img [src]="entrenador.foto" />
+                {{entrenador.nombreCorto}} : {{entrenador.apellidos}}, {{entrenador.nombre}}</mat-option>
+            }
+        </mat-autocomplete>
+
+    </mat-form-field>
+</form>
+
+@if (entrenadoresSeleccionados.length > 0) {
+<table mat-table [dataSource]="entrenadoresSeleccionados" class="mat-elevation-z8" cdkDropList
+    [cdkDropListData]="entrenadoresSeleccionados" (cdkDropListDropped)="finalizarArrastre($event)">
+    <ng-container matColumnDef="imagen">
+        <td mat-cell *matCellDef="let entrenador">
+            <img style="width: 50px" [src]="entrenador.foto" />
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombreCorto">
+        <td mat-cell *matCellDef="let entrenador">
+            {{entrenador.nombreCorto}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+        <td mat-cell *matCellDef="let entrenador">
+            {{entrenador.nombre}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidos">
+        <td mat-cell *matCellDef="let entrenador">
+            {{entrenador.apellidos}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rol">
+        <td mat-cell *matCellDef="let entrenador">
+            <mat-form-field appearance="outline" style="margin: 10px 0">
+                <mat-label>Rol</mat-label>
+                <select matNativeControl required [(ngModel)]="entrenador.rol">
+                    <option label="--selecciona opcion--"></option>
+                    <option value="Entrenador">Entrenador</option>
+                    <option value="Ayudante">Ayudante</option>
+                    <option value="Delegado">Delegado</option>
+                </select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaInicio">
+        <td mat-cell *matCellDef="let jugador">
+            <mat-form-field appearance="outline" style="margin: 10px 0">
+                <mat-label>Desde</mat-label>
+                <input type="date" matInput [(ngModel)]="jugador.fechaInicio" />
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaFin">
+        <td mat-cell *matCellDef="let jugador">
+            <mat-form-field appearance="outline" style="margin: 10px 0">
+                <mat-label>Hasta</mat-label>
+                <input type="date" matInput [(ngModel)]="jugador.fechaFin" />
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+        <td mat-cell *matCellDef="let entrenador">
+            <mat-icon mat-list-icon (click)="eliminar(entrenador)">
+                close
+            </mat-icon>
+        </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: columnasAMostrar" cdkDrag [cdkDragData]="row"></tr>
+</table>
+}

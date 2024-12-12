@@ -1,0 +1,59 @@
+<div class="imagenes-container">
+  <div class="foto">
+    <button mat-raised-button class="add-button" (click)="agregarImagen()">Añadir Foto</button>
+  </div>
+
+  <div *ngFor="let imagen of listaimagenes" class="imagen-item">
+    <div class="imagen-card">
+      <div class="imagen-grid">
+        
+        <!-- Columna: Imagen y botón -->
+        <div class="columna-imagen">
+          <img [src]="imagen.foto ? imagen.foto : 'assets/default-image.png'" [alt]="imagen.descripcion" />
+          <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
+          <button mat-raised-button color="primary" (click)="fileInput.click()">
+            <mat-icon>add_a_photo</mat-icon>
+            Cambiar Foto
+          </button>
+        </div>
+
+        <!-- Columna: Detalles y botones -->
+        <div class="columna-detalles">
+          <div class="campos">
+            <div class="campo-orden-nombre">
+              <mat-form-field class="campo-orden">
+                <mat-label>Orden</mat-label>
+                <input matInput [(ngModel)]="imagen.orden" type="number" />
+              </mat-form-field>
+
+              <mat-form-field class="campo-nombre">
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="imagen.nombre" />
+              </mat-form-field>
+            </div>
+
+            <mat-form-field class="campo-descripcion">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput [(ngModel)]="imagen.descripcion"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="botones-accion">
+            <button mat-raised-button color="accent" (click)="editarImagen(imagen)">
+              <mat-icon>edit</mat-icon>
+              Editar
+            </button>
+            <button mat-raised-button color="warn" (click)="borrarImagen(imagen.id)">
+              <mat-icon>delete</mat-icon>
+              Borrar
+            </button>
+            <button mat-raised-button color="primary" (click)="guardarCambios(imagen)">
+              <mat-icon>save</mat-icon>
+              Guardar Cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

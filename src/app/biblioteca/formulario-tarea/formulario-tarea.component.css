@@ -1,0 +1,198 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.team-container {
+    padding: 10px;
+    max-width: 1000px;
+    min-width: 800px;
+    margin: 0 auto;
+    background-color: #f1eeee;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    
+}
+
+/* Fila de formularios */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Foto y datos de tarea */
+.foto-y-datos {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+/* Campo de la foto */
+.campo-foto {
+    flex-basis: 40%;
+    padding: 10px;
+}
+
+/* Datos de la tarea */
+.datos-tarea {
+    display:grid;
+    flex-basis: 55%;
+    padding: 10px;
+    background-color: #e0e2d9;
+    border-radius: 20px;
+}
+
+/* Objetivos */
+.objetivos {
+    display: flex;
+    flex-basis: 55%;
+    padding: 10px;
+    background-color: #e0e2d9;
+    border-radius: 8px;
+}
+
+.enlinea {
+    display: flex;
+}
+
+/* Controles y sliders */
+.controles {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: column;
+    gap: 20px;
+    height: 100%;
+    max-height: 500px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    max-height: 500px; /* Tamaño máximo que ocupará la sección de controles */
+    padding: 10px; /* Espaciado interno */
+    box-sizing: border-box; /*Asegura que el padding no se "salga" del área */
+}
+
+.seleccion-multiple {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    
+}
+.seleccion-multiple > div {
+    flex: 1;
+    max-width: 48%;
+    text-align: center;
+}
+
+/* Estilo para los sliders */
+.rango-jugadores,
+.rango-tiempo,
+.rango-nivelfisico,
+.rango-ataque,
+.rango-defensa,
+.rango-tecnico-individual,
+.rango-tactico-individual,
+.rango-tecnico-colectivo,
+.rango-tactico-colectivo {
+    height: 150px;
+    flex-basis: 5%;
+    padding-bottom: 55px;
+    background-color: #e0e2d9;;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.rango-jugadores p,
+.rango-tiempo p,
+.rango-nivelfisico p,
+.rango-ataque p,
+.rango-defensa p,
+.rango-tecnico-individual p,
+.rango-tactico-individual p,
+.rango-tecnico-colectivo p,
+.rango-tactico-colectivo p {
+    overflow: hidden;
+}
+
+/* Botones */
+.contenedor-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Botón de guardar */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Botón de cancelar */
+a[mat-stroked-button] {
+    background-color: transparent;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a[mat-stroked-button]:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Form Fields */
+mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Select */
+mat-select,
+mat-input-container select {
+    width: 100%;
+}
+
+/* Input text */
+mat-input-container input,
+mat-form-field input,
+mat-form-field mat-select,
+mat-form-field mat-input {
+    width: 100%;
+}
+
+Estilo para sliders de ngx-slider
+ngx-slider {
+    height: 200px; 
+}
+
+/* Imagen */
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Personalización del form control */
+mat-form-field {
+    margin: 10px 0;
+}

@@ -1,1 +1,18 @@
-<p>crear-tarea works!</p>
+<h2>Crear Tarea</h2>
+
+@if (categoriasNoSeleccionadas){
+
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<app-formulario-tarea (posteoFormulario)="guardarCambios($event)"
+    [categoriasNoSeleccionadas]="categoriasNoSeleccionadas"
+    [categoriasSeleccionadas]="categoriasSeleccionadas"
+    [elementosTecnicosNoSeleccionados]="elementosTecnicosNoSeleccionados"
+    [elementosTecnicosSeleccionados]="elementosTecnicosSeleccionados"
+    [imagenesTareaSeleccionadas]="imagenesTareaSeleccionadas">
+
+
+</app-formulario-tarea>
+} @else {
+    <app-cargando></app-cargando>
+}

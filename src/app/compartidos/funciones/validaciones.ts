@@ -21,6 +21,12 @@ export function primeraLetraMayuscula(): ValidatorFn {
     }
 }
 
+export function obtenerGenero(genero: string): string {
+    // Verifica si la primera letra es 'f' o 'F'
+    return genero.charAt(0).toLowerCase() === 'f' ? "Femenino" : "Masculino";
+}
+
+
 export function fechaNoPuedeSerFutura(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const fechaEscogidaPorElUsuario = new Date(control.value);

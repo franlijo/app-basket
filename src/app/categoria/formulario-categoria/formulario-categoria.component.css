@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e0e0e0; /* Fondo más oscuro para el formulario */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+    border: 2px solid #757575; /* Borde más oscuro */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 300px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    background-color: #eef5f9;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  
+  mat-radio-group {
+    display: flex;
+    justify-content: space-around;
+    background-color: #eef5f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-radio-button {
+    margin: 0 10px;
+  }
+  
+  .contenedor-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  button,
+  a {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  button[mat-flat-button] {
+    background-color: #1976d2;
+    color: #ffffff;
+  }
+  
+  a[mat-stroked-button] {
+    border-color: #1976d2;
+    color: #1976d2;
+    text-decoration: none;
+  }
+  

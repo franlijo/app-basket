@@ -1,0 +1,17 @@
+<h2>Crear Equipo</h2>
+
+@if (jugadoresSeleccionados){
+
+<app-mostrar-errores [errores]="errores" ></app-mostrar-errores>
+
+<app-formulario-equipos 
+   [entrenadoresSeleccionados]="entrenadoresSeleccionados"
+   [jugadoresSeleccionados]="jugadoresSeleccionados"
+   (posteoFormulario)="guardarCambios($event)">
+</app-formulario-equipos>
+} @else {
+   <app-cargando></app-cargando>
+
+}
+
+

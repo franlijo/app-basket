@@ -1,0 +1,81 @@
+/* Contenedor común para la parte superior e inferior */
+.form-container {
+  max-width: 1000px; /* Ancho máximo del formulario */
+  min-width: 400px; /* Ancho mínimo del formulario */
+  width: 100%; /* Asegura que el formulario ocupe todo el ancho disponible hasta el máximo */
+  margin: 0 auto; /* Centra el contenedor en la pantalla */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px; /* Espacio interno alrededor de los campos */
+  background-color: #f9f9f9; /* Fondo suave para delimitar el margen */
+  border: 1px solid #ddd; /* Línea fina alrededor del formulario */
+  border-radius: 8px; /* Bordes redondeados para un estilo más moderno */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+/* Estilos para el bloque superior */
+.primerbloque {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Espacio entre la imagen y los campos */
+  margin-bottom: 20px; /* Espacio entre la parte superior y la parte inferior */
+  background-color: #f1f1f1; /* Fondo suave para el bloque superior */
+  padding: 20px; /* Relleno interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+.profile-image {
+  width: 150px; /* Ajusta el tamaño de la imagen */
+  height: 150px; /* Ajusta el tamaño de la imagen */
+  object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+}
+
+.columna-izquierda {
+  flex: 0 0 auto; /* No se expande ni se contrae */
+}
+.columna-derecha {
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end;
+  align-items: flex-end; 
+}
+
+
+.primeralinea {
+  width: 75%; /* Ocupa el 75% restante */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre los campos */
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+/* Estilos para el bloque inferior */
+.bloqueinferior {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #f1f1f1; /* Fondo suave para el bloque inferior */
+  padding: 20px; /* Relleno interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+.mat-form-field {
+  flex: 1; /* Ambos campos ocupan el 50% del contenedor */
+  min-width: 0;
+}
+
+textarea {
+  width: 100%; /* Los textos dentro de los campos ocuparán todo el espacio disponible */
+}
+
+textarea::placeholder {
+  color: #888; /* Color suave para los placeholders */
+}
+

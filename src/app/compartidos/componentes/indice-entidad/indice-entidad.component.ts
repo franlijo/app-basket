@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { PaginacionDTO } from '../../modelos/PaginacionDTO';
 import { SERVICIO_CRUD_TOKEN } from '../../proveedores/proveedores';
 import { HttpResponse } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { IServicioCRUD } from '../../interfaces/IServicioCRUD';
+import { ListadoEquiposCategoriaComponent } from '../../../equipos/listado-equipos-categoria/listado-equipos-categoria.component';
 
 @Component({
   selector: 'app-indice-entidad',
@@ -17,22 +18,29 @@ import { IServicioCRUD } from '../../interfaces/IServicioCRUD';
   templateUrl: './indice-entidad.component.html',
   styleUrl: './indice-entidad.component.css'
 })
-export class IndiceEntidadComponent<TDTO, TCreacionDTO> {
-  @Input({required: true})
+export class IndiceEntidadComponent<TDTO, TCreacionDTO> implements OnInit{
+
+  ngOnInit(): void {
+     
+      
+  }
+  @Input({ required: true })
   titulo!: string;
 
-  @Input({required: true})
+  @Input({ required: true })
   rutaCrear!: string;
 
-  @Input({required: true})
+  @Input({ required: true })
   rutaEditar!: string;
 
+  @ViewChild("ListadoEquiposCategoriaChild") ListadoEquiposCategoriaComponent!: ListadoEquiposCategoriaComponent;
+
   @Input()
-  columnasAMostrar = ['id', 'nombre', 'acciones'];
+  columnasAMostrar = ['id', 'nombre', 'acciones', 'foto'];
 
   servicioCRUD = inject(SERVICIO_CRUD_TOKEN) as IServicioCRUD<TDTO, TCreacionDTO>;
 
-  paginacion: PaginacionDTO = { pagina: 1, recordsPorPagina: 5 };
+  paginacion: PaginacionDTO = { pagina: 1, recordsPorPagina: 10 };
   entidades!: TDTO[];
   cantidadTotalRegistros!: number;
 
@@ -57,12 +65,12 @@ export class IndiceEntidadComponent<TDTO, TCreacionDTO> {
   borrar(id: number) {
     this.servicioCRUD.borrar(id)
       .subscribe(() => {
-        this.paginacion.pagina = 1;
+        //        this.paginacion.pagina = 1;
         this.cargarRegistros();
       })
   }
 
-  primeraLetraEnMayuscula(valor: string){
+  primeraLetraEnMayuscula(valor: string) {
     if (!valor) return valor;
     return valor.charAt(0).toUpperCase() + valor.slice(1);
   }

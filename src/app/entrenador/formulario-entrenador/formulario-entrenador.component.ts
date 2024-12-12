@@ -11,29 +11,26 @@ import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-mult
 import { SelectorMultipleComponent } from "../../compartidos/componentes/selector-multiple/selector-multiple.component";
 import { EntrenadorCreacionDTO, EntrenadorDTO } from '../entrenador';
 import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @Component({
-  selector: 'app-formulario-entrenador',
-  standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatDatepickerModule, InputImgComponent],
-  // [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink, MatDatepickerModule, InputImgComponent, SelectorMultipleComponent],
-  templateUrl: './formulario-entrenador.component.html',
-  styleUrl: './formulario-entrenador.component.css'
+    selector: 'app-formulario-entrenador',
+    imports: [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink, MatDatepickerModule, InputImgComponent, MatRadioModule],
+    // [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink, MatDatepickerModule, InputImgComponent, SelectorMultipleComponent],
+    templateUrl: './formulario-entrenador.component.html',
+    styleUrl: './formulario-entrenador.component.css'
 })
 export class FormularioEntrenadorComponent implements OnInit{
   
   ngOnInit(): void {
     if (this.modelo !== undefined){
       this.form.patchValue(this.modelo);
-
     }
-
   }
 
   @Input()
-  modelo: EntrenadorDTO | undefined; 
-  //modelo?: EntrenadorDTO  <--- es equivalente
+  modelo?: EntrenadorDTO; 
 
   @Output()
   posteoFormulario = new EventEmitter<EntrenadorCreacionDTO>();
@@ -44,11 +41,14 @@ export class FormularioEntrenadorComponent implements OnInit{
     nombre: ['', {validators:[Validators.required, primeraLetraMayuscula(), Validators.maxLength(50)] }], 
     apellidos: ['', {validators:[Validators.required, primeraLetraMayuscula()] }],
     nombreCorto: ['', {validators:[Validators.required]}],
-    email: ['', {validators:[Validators.required]}],
-    telefono: ['', {validators:[Validators.required]}],
-    titulacion: ['', {validators:[Validators.required]}],
+    email: ['', {validators:[Validators.required, Validators.email]}],
+    telefono: ['', {validators:[Validators.required, Validators.pattern(/^\+?\d{1,3}(\s?\d+)+$/)]}],
+    titulacion: ['Sin titulacion', {validators:[Validators.required]}],
     fechaNacimiento: new FormControl<Date | null>(null, {validators: [Validators.required]}),
-    foto: new FormControl<File | string | null>(null)
+    foto: new FormControl<File | string | null>(null), 
+    historial: ['', {validators: [Validators.maxLength(500)]}],
+    notas: ['', {validators: [Validators.maxLength(500)]}],
+
   })
 
   obtenerErrorCampoNombre(): string{
@@ -59,8 +59,6 @@ export class FormularioEntrenadorComponent implements OnInit{
     if (nombre.hasError('maxlength')){
       return `El campo nombre no puede tener mas de ${nombre.getError('maxlength').requiredLength} caracteres`;
     }
-
-
     if (nombre.hasError('primeraLetraMayuscula')){
       return nombre.getError("primeraLetraMayuscula").mensaje;
     }
@@ -78,6 +76,52 @@ export class FormularioEntrenadorComponent implements OnInit{
     return '';
 
     }
+
+  obtenerErrorCampoTelefono() {
+    let campo = this.form.controls.telefono; 
+    if (campo.hasError('required')){
+      return "El campo telefono es obligatorio"
+    }
+    if (campo.hasError('pattern')){
+      return  "El campo teléfono debe tener un formato válido"
+    }
+
+    return '';
+
+
+      
+      }
+  obtenerErrorCampoEmail() {
+    let campo = this.form.controls.email; 
+    if (campo.hasError('required')){
+      return "El campo email es obligatorio"
+    }
+
+    if (campo.hasError('email')){
+      return "El email debe tener un formato correcto"
+    }
+    return '';
+
+  }
+
+  obtenerErrorCampoHistorial(){
+    let campo = this.form.controls.historial;
+    if (campo.hasError('maxlength')){
+      return "El texto no puede superar los 500 caracteres ";
+    }
+    return '';
+  }
+
+  obtenerErrorCampoNotas(){
+    let campo = this.form.controls.notas;
+    if (campo.hasError('maxLength')){
+      return "El texto no puede superar los 500 caracteres ";
+    }
+    return '';
+  }
+      
+    
+
   obtenerErrorCampoNombreCorto() {
       let nombreCorto = this.form.controls.nombreCorto; 
       if (nombreCorto.hasError('required')){
@@ -88,7 +132,7 @@ export class FormularioEntrenadorComponent implements OnInit{
       }
       return '';
   
-      }
+  }
   
   obtenerErrorCampoTitulacion() {
         let titulacion = this.form.controls.titulacion; 
@@ -123,17 +167,12 @@ export class FormularioEntrenadorComponent implements OnInit{
     
 
   guardarCambios(){
-    // this.router.navigate(['/entrenadores']);
     if (!this.form.valid){
-      return;
-
+          return;
     }
+ 
     const entrenador = this.form.value as EntrenadorCreacionDTO;
     entrenador.fechaNacimiento = moment(entrenador.fechaNacimiento).toDate();
-
-    if (typeof entrenador.foto === "string"){
-      entrenador.foto = undefined;
-    }
 
     this.posteoFormulario.emit(entrenador);
   }

@@ -3,11 +3,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { toBase64 } from '../../funciones/toBase64';
 
 @Component({
-  selector: 'app-input-img',
-  standalone: true,
-  imports: [MatButtonModule],
-  templateUrl: './input-img.component.html',
-  styleUrl: './input-img.component.css'
+    selector: 'app-input-img',
+    standalone: true,
+    imports: [MatButtonModule],
+    templateUrl: './input-img.component.html',
+    styleUrl: './input-img.component.css'
 })
 export class InputImgComponent {
 
@@ -19,6 +19,15 @@ export class InputImgComponent {
 
   @Output()
   archivoSeleccionado = new EventEmitter<File>();
+
+  @Input()
+  anchoFoto?: number = 169;
+
+  @Input()
+  altoFoto?: number= 250;
+
+  @Input()
+  cambiarBoton?: boolean = false;
 
   imagenBase64?: string;
 

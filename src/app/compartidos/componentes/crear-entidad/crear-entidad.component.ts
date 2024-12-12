@@ -6,11 +6,11 @@ import { extraerErrores } from '../../funciones/extraerErrores';
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 
 @Component({
-  selector: 'app-crear-entidad',
-  standalone: true,
-  imports: [MostrarErroresComponent],
-  templateUrl: './crear-entidad.component.html',
-  styleUrl: './crear-entidad.component.css'
+    selector: 'app-crear-entidad',
+    standalone: true,
+    imports: [MostrarErroresComponent],
+    templateUrl: './crear-entidad.component.html',
+    styleUrl: './crear-entidad.component.css'
 })
 export class CrearEntidadComponent<TDTO, TCreacionDTO> implements AfterViewInit {
  

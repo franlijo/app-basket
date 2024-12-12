@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .team-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .row {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #eef5f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap; /* Garantiza que los campos no se desborden */
+    gap: 10px;
+  }
+  
+  .foto-y-datos {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  /* .campo-foto {
+    flex: 0 0 50%; 
+  } */
+
+  .campo-foto {
+    width: 100%;
+  }
+  
+  .campo-foto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .datos-equipo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre los campos */
+    width: 100%;
+  }
+  
+  .campo-ligas {
+    text-align: center;
+  }
+  
+  .rango-jugadores,
+  .rango-fechas {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Espaciado entre campos */
+  }
+  
+  .rango-jugadores mat-form-field,
+  .rango-fechas mat-form-field {
+    flex: 0 0 48%; /* Cada campo ocupa menos del 50% */
+  }
+  
+  .seleccion-jugadores,
+  .seleccion-entrenadores{
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .contenedor-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  button,
+  a {
+    text-transform: uppercase;
+  }
+  

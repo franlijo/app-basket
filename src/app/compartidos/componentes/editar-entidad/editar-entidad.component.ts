@@ -7,11 +7,11 @@ import { CargandoComponent } from "../cargando/cargando.component";
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 
 @Component({
-  selector: 'app-editar-entidad',
-  standalone: true,
-  imports: [CargandoComponent, MostrarErroresComponent],
-  templateUrl: './editar-entidad.component.html',
-  styleUrl: './editar-entidad.component.css'
+    selector: 'app-editar-entidad',
+    standalone: true,
+    imports: [CargandoComponent, MostrarErroresComponent],
+    templateUrl: './editar-entidad.component.html',
+    styleUrl: './editar-entidad.component.css'
 })
 export class EditarEntidadComponent<TDTO, TCreacionDTO> implements OnInit {
 

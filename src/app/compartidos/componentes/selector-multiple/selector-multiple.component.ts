@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { SelectorMultipleDTO } from './SelectorMultipleModelo';
 
 @Component({
-  selector: 'app-selector-multiple',
-  standalone: true,
-  imports: [],
-  templateUrl: './selector-multiple.component.html',
-  styleUrl: './selector-multiple.component.css'
+    selector: 'app-selector-multiple',
+    standalone: true,
+    imports: [],
+    templateUrl: './selector-multiple.component.html',
+    styleUrl: './selector-multiple.component.css'
 })
 export class SelectorMultipleComponent {
 
@@ -15,7 +15,7 @@ export class SelectorMultipleComponent {
 
   
   @Input({required: true})
-  NoSeleccionados!: SelectorMultipleDTO[];
+  NoSeleccionados: SelectorMultipleDTO[] = [];
 
   seleccionar(elemento: SelectorMultipleDTO, indice: number){
     this.Seleccionados.push(elemento);

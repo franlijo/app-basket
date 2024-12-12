@@ -1,0 +1,98 @@
+.imagen-item {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.imagen-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.imagen-card {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.columna-imagen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+}
+
+.columna-imagen img {
+  max-height: 250px;
+  max-width: 250px;
+  width: 100%;
+}
+
+.columna-detalles {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.campo-orden-nombre {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.campo-orden {
+  flex: 0.25;
+}
+
+.campo-nombre {
+  flex: 0.75;
+}
+
+.campo-descripcion {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.botones-accion {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px; /* Espaciado opcional entre la imagen y el botón */
+}
+
+button.mat-raised-button {
+  border-radius: 25px;  /* Borde redondeado, ajusta según lo necesites */
+}
+
+textarea {
+  min-height: 100px; /* Establece una altura mínima para el campo de descripción */
+  
+}

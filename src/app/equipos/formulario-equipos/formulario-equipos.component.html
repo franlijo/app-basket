@@ -1,0 +1,93 @@
+<div class="team-container">
+    <form (submit)="guardarCambios()" [formGroup]="form">
+        <div class="row">
+            <div class="foto-y-datos" #campoFoto>
+                <div class="campo-foto" >
+                    <app-input-img 
+                        [urlImagenActual]="modelo?.foto"
+                        titulo=""
+                        (archivoSeleccionado)="archivoSeleccionado($event)"
+                        [anchoFoto]="anchoFoto"
+                        [altoFoto]="altoFoto"
+                        [cambiarBoton]=true>
+                    </app-input-img>
+                </div>
+
+                <div class="datos-equipo">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput [formControl]="form.controls.nombre" />
+                        <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Categoria</mat-label>
+                        <mat-select [formControl]="form.controls.categoriaId">
+                          <mat-option *ngFor="let categoria of listaCategorias" [value]="categoria.id">
+                            {{ categoria.nombre }} - {{ categoria.genero }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Division</mat-label>
+                        <select matNativeControl required [formControl]="form.controls.liga">
+                            <option label="--selecciona opcion--"></option>
+                            <option value="1ra Aut.">1ra Autonómica.</option>
+                            <option value="2da Local">2da Local</option>
+                            <option value="2da Aut.">2da Autonómica.</option>
+                            <option value="3ra Local">3ra Local</option>
+                            <option value="3ra Aut.">3ra Autonómica</option>
+                            <option value="Sub 22">Sub 22</option>
+                        </select>
+                      </mat-form-field>
+                      <div class="rango-jugadores">
+                      <p>Rango Número Jugadores</p>
+                      <ngx-slider  [value]="form.controls.minimoJugadores.value!" 
+                                    [highValue]="form.controls.maximoJugadores.value!" 
+                                    [options]="rangoJugadores"
+                                    (valueChange)="onMinValueChange($event)"
+                                    (highValueChange)="onMaxValueChange($event)">
+                        </ngx-slider>
+
+                    </div>
+                    <mat-form-field>
+                        <mat-label>Duracion Liga</mat-label>
+                        <mat-date-range-input [rangePicker]="picker" [formGroup]="form">
+                          <input matStartDate placeholder="Inicio" [formControl]="form.controls.fechaInicio" />
+                          <input matEndDate placeholder="Fin" [formControl]="form.controls.fechaFin" />
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                      </mat-form-field>
+        
+                      
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="seleccion-jugadores">
+            <app-autocomplete-jugadores [jugadoresSeleccionados]="jugadoresSeleccionados">
+
+            </app-autocomplete-jugadores>
+
+        </div>
+
+        <div class="seleccion-entrenadores">
+
+            <app-autocomplete-entrenadores
+                [entrenadoresSeleccionados]="entrenadoresSeleccionados"></app-autocomplete-entrenadores>
+        </div>
+
+        <div class="contenedor-botones">
+            <button type="submit" mat-flat-button [disabled]="form.invalid">Guardar Cambios</button>
+            <a mat-stroked-button routerLink="/equipos">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>

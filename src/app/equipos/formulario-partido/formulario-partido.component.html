@@ -1,0 +1,7 @@
+<form (ngSubmit)="enviarFormulario()">
+    <label for="fechaPartido">Fecha del Partido:</label>
+    <input type="date" id="fechaPartido" [(ngModel)]="fechaPartido" name="fechaPartido" required>
+    
+    <!-- Botón para enviar el formulario -->
+    <button type="submit">Registrar Partido</button>
+  </form>

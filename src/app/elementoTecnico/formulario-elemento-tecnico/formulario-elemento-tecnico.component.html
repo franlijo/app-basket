@@ -1,0 +1,26 @@
+<form (submit)="guardarCambios()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Elemento</mat-label>
+        <input matInput [formControl]="form.controls.nombre">
+        <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput #messag1 maxlength="500"  placeholder="Breve descripcion del elemento técnico" 
+        rows="4" cols="50" [formControl]="form.controls.descripcion"></textarea>
+        <mat-hint align="start">Máximo 500 caracteres</mat-hint>
+        <mat-hint align="end">{{messag1.value.length}}</mat-hint>
+        <mat-error>{{obtenerErrorCampoDescripcion()}}</mat-error>
+    </mat-form-field>
+
+
+
+    <div class="contenedor-botones">
+        <button mat-flat-button type="submit"
+            [disabled]="form.invalid">Guardar cambios</button>
+        <a mat-stroked-button routerLink="/elementosTecnicos">Cancelar</a>
+        </div>
+
+
+</form>

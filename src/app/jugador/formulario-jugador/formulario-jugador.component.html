@@ -1,29 +1,138 @@
-<form (submit)="guardarCambios()" [formGroup]="form">
+<div class="form-container">
+<form (submit)="guardarCambios()" [formGroup]="form" class="form-layout">
+
+    <div class="primerbloque">
+        <div class="columna-izquierda">
+            <div>
+                <app-input-img 
+                [urlImagenActual]="modelo?.foto"
+                titulo="" (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
+            </div>
+
+        </div>
+
+        <div class="bloquesuperior">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput [formControl]="form.controls.nombre" />
+                <mat-error></mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput [formControl]="form.controls.apellidos" />
+                <mat-error></mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre Corto</mat-label>
+                <input matInput [formControl]="form.controls.nombreCorto" />
+                <mat-error></mat-error>
+            </mat-form-field>
+
+
+
+        </div>
+        <div class="bloquesuperior">
+            <mat-form-field appearance="outline">
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="form.controls.fechaNacimiento" />
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            </mat-form-field>
+        
+            <mat-radio-group [formControl]="form.controls.genero" aria-label="Select an option">
+                <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+                <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+              </mat-radio-group>
+        
+            <mat-form-field appearance="outline">
+                <mat-label>Altura en centimetros</mat-label>
+                <input type="number" matInput [formControl]="form.controls.altura" 
+                min="120" max="220" step="1" />
+                <mat-error></mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field>
+                <mat-label>Selecciona su puesto</mat-label>
+                <select matNativeControl required [formControl]="form.controls.puesto">
+                  <option label="--selecciona opcion--"></option>
+                  <option value="Base">Base</option>
+                  <option value="Escolta">Escolta</option>
+                  <option value="Alero">Alero</option>
+                  <option value="Ala-pivot">Ala-pivot</option>
+                  <option value="Pivot">Pivot</option>
+                </select>
+              </mat-form-field>   
+              
+             
+        </div>
+
+    </div>
+
+
+    <div class="bloqueinferior">
+        <mat-form-field appearance="outline">
+            <mat-label>Caracteristicas</mat-label>
+            <input matInput [formControl]="form.controls.caracteristicas" />
+            <mat-error></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Tutor</mat-label>
+            <input matInput [formControl]="form.controls.tutor" />
+            <mat-error></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput [formControl]="form.controls.email" />
+            <mat-error></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput [formControl]="form.controls.telefono" />
+            <mat-error></mat-error>
+        </mat-form-field>
+
+
+
+    </div>
+
+    <div class="bloqueinferior">
+
 
     <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput [formControl]="form.controls.nombre" />
-        <mat-error></mat-error>
-    </mat-form-field>
+        <mat-label>Historial</mat-label>
+        <textarea matInput #messag1 placeholder="Escribe historial del jugador" rows="4" cols="50" 
+                  [formControl]="form.controls.historial"></textarea>
+        <mat-hint align="start">Máximo 500 caracteres</mat-hint>
+        <mat-hint align="end">{{messag1.value.length}}</mat-hint>
+        <mat-error>{{obtenerErrorCampoHistorial()}}</mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Apellidos</mat-label>
-        <input matInput [formControl]="form.controls.apellidos" />
-        <mat-error></mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Notas</mat-label>
+        <textarea matInput #messag2 placeholder="Escribe notas en el club del jugador" rows="4" cols="50" 
+                  [formControl]="form.controls.notas"></textarea>
+        <mat-hint align="start">Máximo 500 caracteres</mat-hint>
+        <mat-hint align="end">{{messag2.value.length}}</mat-hint>
+        <mat-error>{{obtenerErrorCampoNotas()}}</mat-error>
+      </mat-form-field>      
 
-    <mat-form-field appearance="outline">
-        <mat-label>Fecha Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [formControl]="form.controls.fechaNacimiento" />
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    </mat-form-field>
+    </div>
+
 
     <div class="contenedor-botones">
-        <button mat-flat-button type="submit"
-            [disabled]="form.invalid">Guardar cambios</button>
-        <a mat-stroked-button routerLink="/jugadores">Cancelar</a>
+
+       <button type="submit" 
+        mat-flat-button [disabled]="form.invalid">Guardar cambios</button>
+            <a mat-stroked-button routerLink="/jugadores">Cancelar</a>
+    
         </div>
         
 </form>
 
+</div>

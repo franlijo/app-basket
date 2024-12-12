@@ -1,0 +1,30 @@
+<h2>Editar Equipo</h2>
+@if(entrenadoresSeleccionados){
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+<!-- <app-editar-entidad [formulario]="formularioEquipos" [id]= "id" rutaIndice="/equipos" titulo="Editar Equipo" ></app-editar-entidad> -->
+
+<app-formulario-equipos [modelo]="equipo" 
+    [entrenadoresSeleccionados]="entrenadoresSeleccionados" 
+    [jugadoresSeleccionados]="jugadoresSeleccionados"
+    (posteoFormulario)="guardarCambios($event)">
+</app-formulario-equipos> 
+<div class="secciones">
+<div class="entrenamientos-seccion">
+    <h3>Registrar Entrenamiento</h3>
+    <app-formulario-entrenamiento (posteoFormulario)="guardarEntrenamiento()"></app-formulario-entrenamiento>
+  </div>
+
+  <!-- Sección para registrar partidos -->
+  <div class="partidos-seccion">
+    <h3>Registrar Partido</h3>
+    <app-formulario-partido (posteoFormulario)="guardarPartido()"></app-formulario-partido>
+  </div>
+</div>
+} @else {
+    <app-cargando></app-cargando>
+}
+
+
+
+<!-- <app-editar-entidad [formulario]="formularioJugadores" 
+    [id]="id" rutaIndice="/jugadores" titulo="Editar Jugador" ></app-editar-entidad> -->

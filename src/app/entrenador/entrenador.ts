@@ -6,7 +6,9 @@ export interface EntrenadorCreacionDTO {
     titulacion: string; 
     email: string; 
     telefono: string; 
-    foto?: File; 
+    foto: File; 
+    historial: string;
+    notas: string;
 
 }
 
@@ -20,6 +22,21 @@ export interface EntrenadorDTO {
     titulacion: string; 
     email: string; 
     telefono: string; 
-    foto?: string
+    foto?: string;
+    historial?: string;
+    notas?: string;
 
 }
+export interface entrenadorAutoCompleteDTO {
+
+    id: number;    
+    nombre: string;
+    apellidos: string; 
+    nombreCorto: string;
+    rol: string;
+    fechaInicio: Date;
+    fechaFin: Date;
+    foto: string;
+
+}
+

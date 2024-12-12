@@ -1,4 +1,5 @@
-<h2>Editar Actor</h2>
-
-
-<app-formulario-jugador (posteoFormulario)="guardarCambios($event)" [modelo]="jugador"></app-formulario-jugador>
+<app-editar-entidad 
+    [formulario]="formularioJugadores" 
+    [id]="id" rutaIndice="/jugadores" 
+    titulo="Editar Jugador" >
+</app-editar-entidad>
